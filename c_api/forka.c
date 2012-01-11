@@ -63,6 +63,8 @@ int main()
 		// why it doesn't print
 		printf("sub process end. " );
 
+		goto code1;
+
 	} else if ( pid != 0 ) {
 		printf("parent process begin...\n " ); 
 		waitpid(pid, NULL, 0); 
@@ -71,4 +73,6 @@ int main()
 		var_multi("para1", "para2", "para3");
 		file_t();
    	}
+
+code1 : printf("go to here. \n ");
 }
