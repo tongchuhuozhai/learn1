@@ -74,5 +74,12 @@ int main()
 		file_t();
    	}
 
-code1 : printf("go to here. \n ");
+code1 : 
+	{
+		int i = 1;
+		volatile int *p = &i;
+		*p = 1;
+		*p = 2;
+		printf("volatile means the content of address p(%0x) change easily, whicn keep *p from compiler optimization(that is *p =2). \n ", p);
+	}
 }
