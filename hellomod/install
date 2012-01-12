@@ -1,2 +1,5 @@
 #! /bin/bash
+# use kernel source to compile ko
+# -C means go to the defined dir
+# current dir has custom Makefile, so use SUBDIRS=${PWD} to compile custom ko
 make -C /usr/src/linux-source-2.6.32 SUBDIRS=${PWD} modules
