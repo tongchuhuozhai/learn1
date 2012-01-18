@@ -1,0 +1,1 @@
+cmd_/home/tongchuhuozhai/learn1/hellomod/hellomod.ko := ld -r -m elf_i386 -T /usr/src/linux-source-2.6.32/scripts/module-common.lds --build-id -o /home/tongchuhuozhai/learn1/hellomod/hellomod.ko /home/tongchuhuozhai/learn1/hellomod/hellomod.o /home/tongchuhuozhai/learn1/hellomod/hellomod.mod.o
