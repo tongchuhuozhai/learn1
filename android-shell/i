@@ -1,0 +1,15 @@
+#! /bin/bash
+echo adb shell mount -o remount,rw -t yaffs2 /dev/block/mtdblock4 /system
+adb shell mount -o remount,rw -t yaffs2 /dev/block/mtdblock4 /system
+var1=$(basename `pwd`).apk
+echo ${var1}
+echo adb push ~/code/android/out/target/product/msm7627a_sku3/system/app/${var1} /system/app
+adb push ~/code/android/out/target/product/msm7627a_sku3/system/app/${var1} /system/app
+
+if [ $# -ge 1 ]; then
+		var2=$1
+		if [ ${var2} == "r" ]; then
+			adb reboot
+		fi
+fi
+
