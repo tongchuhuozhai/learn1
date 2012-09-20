@@ -1,5 +1,0 @@
-#! /bin/bash
-sudo ~/ware/android-sdk-linux/platform-tools/fastboot flash boot /home/lg/code/android/out/target/product/msm7627a_sku3/boot.2knand.img 
-sudo ~/ware/android-sdk-linux/platform-tools/fastboot flash system /home/lg/code/android/out/target/product/msm7627a_sku3/system.2knand.img
-sudo ~/ware/android-sdk-linux/platform-tools/fastboot flash userdata /home/lg/code/android/out/target/product/msm7627a_sku3/userdata.2knand.img
-sudo ~/ware/android-sdk-linux/platform-tools/fastboot reboot

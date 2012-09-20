@@ -1,6 +1,0 @@
-#! /bin/bash
-if [ $1 == "k" ]; then
-	sudo ~/ware/android-sdk-linux/platform-tools/adb kill-server
-elif [ $1 == "s" ]; then
-	sudo ~/ware/android-sdk-linux/platform-tools/adb start-server
-fi

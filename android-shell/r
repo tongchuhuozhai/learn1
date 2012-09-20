@@ -1,7 +1,0 @@
-#! /bin/bash
-name=$(basename `pwd`)
-echo rm /home/lg/code/android/out/target/product/msm7627a_sku3/obj/APPS/${name}_intermediates/ -rf
-rm /home/lg/code/android/out/target/product/msm7627a_sku3/obj/APPS/${name}_intermediates/ -rf
-echo rm /home/lg/code/android/out/target/common/obj/APPS/${name}_intermediates/ -rf
-rm /home/lg/code/android/out/target/common/obj/APPS/${name}_intermediates/ -rf
-
