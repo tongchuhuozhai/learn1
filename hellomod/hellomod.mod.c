@@ -17,6 +17,9 @@ __attribute__((section(".gnu.linkonce.this_module"))) = {
 static const struct modversion_info ____versions[]
 __used
 __attribute__((section("__versions"))) = {
+	{ 0xcbef08d, "module_layout" },
+	{ 0xb72397d5, "printk" },
+	{ 0xb4390f9a, "mcount" },
 };
 
 static const char __module_depends[]

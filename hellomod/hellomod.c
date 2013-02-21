@@ -11,7 +11,7 @@ MODULE_LICENSE("GPL");
 
 static int __init hello_init(void)
 {
-	printk("init ");
+	printk("init aaaaaaaaaaaa");
 }
 
 static void __exit hello_exit(void)
