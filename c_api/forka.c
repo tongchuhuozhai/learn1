@@ -2,10 +2,11 @@
 #include <sys/wait.h>
 #include <stdio.h>
 #include <unistd.h>
-#include </home/tongchuhuozhai/learn1/c_api/threada.h>
+#include "./threada.h"
 #include <stdarg.h>
 #include <string.h>
 #include <fcntl.h>
+
 
 void var_multi(const char* p, ...)
 {
