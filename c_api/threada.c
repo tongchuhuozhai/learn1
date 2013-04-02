@@ -2,7 +2,18 @@
 #include <stdio.h>
 void *thread_func(void *arg)
 {
-	// why it not print
+	int i = 0x00000001;
+	char b = (char)0x01;
+
+	int r = i & b;
+	printf("sizeof(int) is r is  %0x \n", r);
+
+	short int x;
+	x=0x0100;
+	char *p[2];
+	p = (char *)&x; 
+	char bc = *(p[0]);
+	printf("content of low address x %0x", bc); 
 	printf("thread a started... \n");
 	return ( (void *) 0);
 }
