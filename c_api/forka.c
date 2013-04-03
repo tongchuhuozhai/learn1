@@ -33,6 +33,15 @@ void var_multi(const char* p, ...)
 	va_end(p_list);
 }
 
+void copy_string(char *source, char *dest, int size){
+	int i; 
+	for(; i<size; i++){
+		*dest = *source;	
+		dest++;
+		source++;
+	}	
+}
+
 void file_t()
 {
 	int fd = open("/tmp/file_test_a", O_WRONLY | O_CREAT);
@@ -40,12 +49,20 @@ void file_t()
 	write(fd, a, sizeof(a));
 	close(fd);
 
+	//
+	char *source, *dest;
+	source = "this is string";
+	dest = (char *)malloc(sizeof(char)*6);
+	copy_string(source, dest, 5);
+	printf("\n<-------------copy string function----------------->\n");
+	printf("source string is : %s, \ndest string copied is : %s", source, dest);
+
+	// 
 	char buffer[10];
 	fd = open("/tmp/file_test_a", O_RDONLY);
 	read(fd, buffer, 3);
 	close(fd);
-	printf("%s\n", buffer);
-
+	printf("\n%s\n", buffer);
 }
 
 int main()
