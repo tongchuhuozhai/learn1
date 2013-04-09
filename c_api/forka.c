@@ -63,6 +63,24 @@ void file_t()
 	read(fd, buffer, 3);
 	close(fd);
 	printf("\n%s\n", buffer);
+
+	//
+	test_const();
+}
+
+void test_const()
+{
+	printf("\n <---------------------------- >");
+	char *p = "adfd";
+	//p[0] = 'b'; p指向一个内存中的只读区域，这里p[0] = 'b', 修改只读区域，报段错误
+	char c[4]= "abc";
+	//const (char *) p1;
+	const char *p1;
+	p1 = p;
+	p1++;
+	char* const ps;
+	// ps++; const在＊的左边，表示该指针不能变，不是指针所指向的东西不能变，即指针不能自增。
+	//const (char*) ps;
 }
 
 int main()
