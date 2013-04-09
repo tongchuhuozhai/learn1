@@ -66,11 +66,35 @@ void file_t()
 
 	//
 	test_const();
+
+	test_enum();
 }
 
+void test_enum()
+{
+	enum ren {zhongshengren, wushengren};
+	enum ren ren1;
+	ren1 = zhongshengren;
+	printf("\n <------------ enum learn ---------------- > \n");
+	printf("the valude of enum variable is %d \n ", ren1);
+
+	ren1 = 0; // 不必转型
+	int i = 0;
+	switch (i){
+	case zhongshengren:
+		printf("the defalut valude of first element in enum set is %d \n ", zhongshengren);
+		break;
+	case wushengren:
+		printf("the defalut valude of second element in enum set is %d \n ", wushengren);
+		break;
+	default:
+		break;
+	}
+
+}
 void test_const()
 {
-	printf("\n <---------------------------- >");
+	printf("\n <------------ const learn ---------------- > \n");
 	char *p = "adfd";
 	//p[0] = 'b'; p指向一个内存中的只读区域，这里p[0] = 'b', 修改只读区域，报段错误
 	char c[4]= "abc";
