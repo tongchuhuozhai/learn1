@@ -29,7 +29,6 @@ void var_multi(const char* p, ...)
 	p1 = va_arg(p_list, char*);
 	printf("%s\n", p1);
 
-
 	va_end(p_list);
 }
 
@@ -68,6 +67,8 @@ void file_t()
 	test_const();
 
 	test_enum();
+
+	test_snprintf();
 }
 
 void test_enum()
@@ -107,6 +108,18 @@ void test_const()
 	//const (char*) ps;
 }
 
+void test_snprintf()
+{
+	printf("\n <------------ snprintf learn ---------------- > \n");
+	char s[10] = "1234567890";
+	char *p = "abc";
+	strcpy(s, p);
+	printf("test strcpy \t dest mem contains : %s \n");
+
+	char n1[100];
+	snprintf(n1, 15, "abc%d%s", 3,  "efg");
+	printf("\n n1 : %s \n", n1);
+}
 int main()
 {
 	pid_t pid = fork();
