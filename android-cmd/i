@@ -1,0 +1,26 @@
+#! /bin/bash
+cat ~/bin/i
+echo -d adb shell mount -o remount,rw -t yaffs2 /dev/block/mtdblock4 /system
+adb -d shell mount -o remount,rw -t yaffs2 /dev/block/mtdblock4 /system
+var1=$(basename `pwd`).apk
+echo ${var1}
+
+if [ $* > 0 ]; then
+		proj=$1/
+fi
+
+if [ $1 == "301" ]; then
+	echo adb -d push ../../../out/target/product/msm7627a/system/app/${var1} /system/app
+	adb -d push ../../../out/target/product/msm7627a/system/app/${var1} /system/app
+else
+	echo adb -d push ~/code/${proj}android/out/target/product/msm7627a_sku3/system/app/${var1} /system/app
+	adb -d push ~/code/${proj}android/out/target/product/msm7627a_sku3/system/app/${var1} /system/app
+fi
+
+if [ $# -ge 22 ]; then
+		var2=$1
+		if [ ${var2} == "r" ]; then
+			adb reboot
+		fi
+fi
+

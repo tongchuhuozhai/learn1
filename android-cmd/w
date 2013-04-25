@@ -1,0 +1,2 @@
+#! /bin/bash
+wine /home/lg/.wine/drive_c/Program\ Files/Source\ Insight\ 3/Insight3.Exe

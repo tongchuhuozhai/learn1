@@ -1,0 +1,25 @@
+#! /bin/bash
+name=$(basename `pwd`)
+if [ $* > 0 ]; then
+if [ $1 == "101" ]; then
+		proj=101/
+fi
+proj=$1
+fi
+echo rm /home/lg/code/${proj}android/out/target/product/msm7627a_sku3/obj/APPS/${name}_intermediates/ -rf
+rm /home/lg/code/${proj}android/out/target/product/msm7627a_sku3/obj/APPS/${name}_intermediates/ -rf
+echo rm /home/lg/code/${proj}android/out/target/common/obj/APPS/${name}_intermediates/ -rf
+rm /home/lg/code/${proj}android/out/target/common/obj/APPS/${name}_intermediates/ -rf
+
+if [ $1 == "301" ]; then
+	echo rm ../../../out/target/product/msm7627a/obj/APPS/${name}_intermediates/ -rf
+	rm ../../../out/target/product/msm7627a/obj/APPS/${name}_intermediates/ -rf
+	echo rm ../../..//out/target/common/obj/APPS/${name}_intermediates/ -rf
+	rm ../../..//out/target/common/obj/APPS/${name}_intermediates/ -rf
+else
+	echo rm /home/lg/code/${proj}android/out/target/product/msm7627a_sku3/obj/APPS/${name}_intermediates/ -rf
+	rm /home/lg/code/${proj}android/out/target/product/msm7627a_sku3/obj/APPS/${name}_intermediates/ -rf
+	echo rm /home/lg/code/${proj}android/out/target/common/obj/APPS/${name}_intermediates/ -rf
+	rm /home/lg/code/${proj}android/out/target/common/obj/APPS/${name}_intermediates/ -rf
+fi	
+ 

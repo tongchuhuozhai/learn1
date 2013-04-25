@@ -1,0 +1,6 @@
+#! /bin/bash
+echo "ok" 
+var="/home/"$1
+echo $1
+echo ${var}
+basename `pwd`
