@@ -8,6 +8,7 @@
 
 #include <linux/mm.h>
 
+#include <linux/workqueue.h>
 
 #include <linux/slab.h>
 #include <linux/spinlock.h>
@@ -63,6 +64,10 @@ static const struct file_operations fops =
 	.read = f_read,
 };
 
+/* Although this function is defined in this file, it must be declared before called. 
+*/
+void learn_work_queue(); 
+
 static int __init hello_init(void)
 {
 	short int x;
@@ -73,17 +78,35 @@ static int __init hello_init(void)
 	// p = (char *[])&x;
 	p1 = (char *)&x;
 	
-    dev_t d = MKDEV(100, 0);
+        dev_t d = MKDEV(100, 0);
 	register_chrdev_region(d, 1, "ggggggg");
 
 	globalmem_devp = kmalloc(sizeof(struct globalmem_dev), GFP_KERNEL);
 
 	// init char device
+	#if 1
+	// this is static initilization
  	cdev_init(&globalmem_devp->cdev, &fops);
-	globalmem_devp->cdev.ops = &fops;
+	#else
+	// this is dynamic initialization
+	globalmem_devp->cdev = cdev_alloc();
+	globalmem_devp->cdev.ops = &fops;		 
+	#endif
+
 	cdev_add(&globalmem_devp->cdev, d, 1);
-	
-	printk("test .............. " );			
+	printk("test .............. " );	
+
+	learn_work_queue();		
+}
+void func(){
+	printk("delayed work........");
+}
+
+void learn_work_queue(){
+	struct workqueue_struct *wqs;
+        create_singlethread_workqueue("workqueue1");
+	struct delayed_work *dw;
+	INIT_DELAYED_WORK(dw, func);
 }
 
 static void __exit hello_exit(void)
