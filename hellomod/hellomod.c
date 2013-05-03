@@ -1,3 +1,4 @@
+#include <linux/interrupt.h>
 #include <linux/module.h>
 #include <asm/uaccess.h> // 如果不包含这个文件，则copy_to_user报兼容性错误
 #include <linux/init.h>
@@ -64,22 +65,30 @@ static const struct file_operations fops =
 	.read = f_read,
 };
 
-/* Although this function is defined in this file, it must be declared before called. 
+/*
+Although these function are defined in this file, they must be declared before called. 
 */
-void learn_work_queue(); 
+void l_work_queue();
+void l_pointMem();
+void l_irq();
+
+// 
+char *device_name;
+const int device_id = 100;
+int irq_number = 12;
 
 static int __init hello_init(void)
 {
-	short int x;
-	x = 0x0001;
-	
-	char *p[2];
-	char *p1;
-	// p = (char *[])&x;
-	p1 = (char *)&x;
-	
-        dev_t d = MKDEV(100, 0);
-	register_chrdev_region(d, 1, "ggggggg");
+	device_name = kmalloc(20, GFP_KERNEL);
+	device_name ="name1";
+
+        dev_t d = MKDEV(device_id, 0);
+
+	int register_code = register_chrdev_region(d, 1, device_name);
+	if( register_code < 0 ){
+	   printk("register_code : %d", register_code);
+	   return 1;
+	}
 
 	globalmem_devp = kmalloc(sizeof(struct globalmem_dev), GFP_KERNEL);
 
@@ -96,23 +105,49 @@ static int __init hello_init(void)
 	cdev_add(&globalmem_devp->cdev, d, 1);
 	printk("test .............. " );	
 
-	learn_work_queue();		
+	l_work_queue();
+	l_pointMem();
+	l_irq();
+		
 }
 void func(){
 	printk("delayed work........");
 }
 
-void learn_work_queue(){
+void l_pointMem(){
+	short int x;
+	x = 0x0001;
+	
+	char *p[2];
+	char *p1;
+	// p = (char *[])&x;
+	p1 = (char *)&x;
+}
+
+void l_work_queue(){
 	struct workqueue_struct *wqs;
         create_singlethread_workqueue("workqueue1");
 	struct delayed_work *dw;
 	INIT_DELAYED_WORK(dw, func);
 }
 
+void irq_handle()
+{
+	printk("irq_handle");
+}
+
+
+void l_irq()
+{
+	request_irq(irq_number, irq_handle, 0, device_name, &device_id);
+}
+
+
 static void __exit hello_exit(void)
 {
 	cdev_del(&globalmem_devp->cdev);
 	kfree(globalmem_devp);
+	free_irq(irq_number, device_name);
 	printk("hello exit. " );
 }
 
