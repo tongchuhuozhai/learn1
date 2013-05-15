@@ -6,3 +6,7 @@
 *.cmd
 *.mod
 *.swp
+.hellomod.ko.cmd
+.hellomod.mod.o.cmd
+.hellomod.o.cmd
+

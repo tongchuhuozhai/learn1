@@ -114,7 +114,7 @@ void test_snprintf()
 	char s[10] = "1234567890";
 	char *p = "abc";
 	strcpy(s, p);
-	printf("test strcpy \t dest mem contains : %s \n");
+	printf("test strcpy \t dest mem contains : %s \n", s);
 
 	char n1[100];
 	snprintf(n1, 15, "abc%d%s", 3,  "efg");

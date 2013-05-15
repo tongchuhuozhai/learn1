@@ -11,7 +11,7 @@ void *thread_func(void *arg)
 	short int x;
 	x=0x0100;
 	char *p[2];
-	p = (char *)&x; 
+	//p = (char *)&x; 
 	char bc = *(p[0]);
 	printf("content of low address x %0x", bc); 
 	printf("thread a started... \n");
