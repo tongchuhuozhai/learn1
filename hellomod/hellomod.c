@@ -92,7 +92,7 @@ static int __init hello_init(void)
 	}
 
 	globalmem_devp = kmalloc(sizeof(struct globalmem_dev), GFP_KERNEL);
-	memset(globalmem_devp, 0, sizeof(globalmem_devp);
+	memset(globalmem_devp, 0, sizeof(globalmem_devp));
 
 	// init char device
 	#if 1
