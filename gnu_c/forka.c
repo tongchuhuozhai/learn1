@@ -8,6 +8,7 @@
 #include <fcntl.h>
 
 
+#define printf_d(str1,str2...) printf(str1,##str2)
 void var_multi(const char* p, ...)
 {
 	char *p1 = 0;
@@ -18,7 +19,7 @@ void var_multi(const char* p, ...)
 	// declare pointer
 	va_list p_list;
 
-	// define pointer
+	// define pointer, point to last fixed parameter
 	va_start(p_list, p);
 
 	// second variable para
@@ -69,8 +70,37 @@ void file_t()
 	test_enum();
 
 	test_snprintf();
+
+	test_if_likely();
+
+	test_define();
+}
+void test_define(){
+	
+	printf("\n <------------ test define  ---------------- > \n");
+	printf_d("test %d \n", 1);
+        printf_d("test## \n");
 }
 
+void test_if_likely(){
+	printf("\n <------------ enum if likely ---------------- > \n");
+	if(!1){
+		printf("if it is bigger than 0 , it is true \n");	
+	}
+	if(-1){
+		printf("if it is less than 0 , it is true \n");	
+	}
+	
+	if(0){
+	}else{
+		printf("if it is 0, it is false\n");
+	}
+
+
+	if( 1 ) { // likely(1)){
+		printf("likely help compiler to optimize, which \n");	
+	}
+}
 void test_enum()
 {
 	enum ren {zhongshengren, wushengren};
@@ -124,6 +154,8 @@ int main()
 {
 	pid_t pid = fork();
 	if( pid == 0 ) {
+		char a = '1';
+		printf("char 1 assic : 0x%0X\n ", a);
 		printf("sub process beging... \n ");
 		// define the vector of command parameters
 		char *v[] = {"ls", "-l", NULL};
@@ -156,3 +188,4 @@ code1 :
 		printf("volatile means the content of address p(%0x) change easily, whicn keep *p from compiler optimization(that is *p =2). \n ", p);
 	}
 }
+
