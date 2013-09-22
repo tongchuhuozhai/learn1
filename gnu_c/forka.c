@@ -154,7 +154,8 @@ int main()
 {
 	pid_t pid = fork();
 	if( pid == 0 ) {
-		char a = '1';
+		char a = '0';
+		printf("char 0 assic :%d \n", a);
 		printf("char 1 assic : 0x%0X\n ", a);
 		printf("sub process beging... \n ");
 		// define the vector of command parameters
